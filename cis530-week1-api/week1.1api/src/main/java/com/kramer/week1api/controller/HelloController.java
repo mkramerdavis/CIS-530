@@ -21,12 +21,14 @@ public class HelloController {
     public Map<String, Object> info() {
         Map<String, Object> data = new LinkedHashMap<>();
 
+        data.put("message", "Welcome to the Course!");
+        data.put("name", "Marc Kramer-Davis");
+        data.put("institution", "Bellevue University");
         data.put("course", "CIS-530: Server-Side Development");
-        data.put("week", 1);
-        data.put("technology", "Spring Boot");
         data.put("instructor", "Professor Richard Krasso");
         data.put("semester", "Fall 2026");
-        data.put("institution", "Bellevue University");
+        data.put("week", 1);
+        data.put("technology", "Spring Boot");
         
         return data;
     }
