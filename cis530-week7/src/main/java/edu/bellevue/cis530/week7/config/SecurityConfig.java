@@ -14,7 +14,10 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import edu.bellevue.cis530.week7.security.CustomUserDetailsService;
 
-//Configuration class for setting up security settings.
+/*
+ * Security configuration class for the application.
+ * Configures authentication and authorization settings.
+ */
 @Configuration
 public class SecurityConfig {
 
@@ -24,13 +27,13 @@ public class SecurityConfig {
         this.customUserDetailsService = customUserDetailsService;
     }
 
-    // Configure the password encoder.
+    // Password encoder bean using BCrypt hashing algorithm.
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // Configure the authentication provider to use the custom user details service and password encoder.
+    // Authentication provider bean that uses the custom user details service and password encoder.
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider =
@@ -41,22 +44,26 @@ public class SecurityConfig {
         return provider;
     }
 
-    // Retrieve the authentication manager to use the custom user details service and password encoder.
+    // Authentication manager bean that retrieves the authentication manager from the configuration.
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+    public AuthenticationManager authenticationManager(
+            AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
 
-    // Configure the security filter chain to define access rules and authentication methods.
+    // Security filter chain bean that configures HTTP security settings.
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http)
+            throws Exception {
 
         http
             .authenticationProvider(authenticationProvider())
-            
-            // Allow USER and ADMIN roles to perform GET requests; restrict other requests to ADMIN.
+
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers(HttpMethod.GET, "/**").hasAnyRole("USER", "ADMIN")
+                .requestMatchers("/", "/error", "/login").permitAll()
+                .requestMatchers("/welcomeprofile").authenticated()
+                .requestMatchers(HttpMethod.GET, "/**")
+                    .hasAnyRole("USER", "ADMIN")
                 .requestMatchers(HttpMethod.POST, "/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN")
@@ -64,8 +71,17 @@ public class SecurityConfig {
             )
             .httpBasic(Customizer.withDefaults())
             .formLogin(Customizer.withDefaults())
-            .csrf(csrf -> csrf.disable());
+            .oauth2Login(Customizer.withDefaults())
+            .csrf(csrf -> csrf.disable())
+            .logout(logout -> logout
+                .clearAuthentication(true)
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessUrl("/")
+                .permitAll()
+            );
 
         return http.build();
     }
 }
+
