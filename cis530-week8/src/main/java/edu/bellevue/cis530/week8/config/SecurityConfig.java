@@ -60,15 +60,30 @@ public class SecurityConfig {
             .authenticationProvider(authenticationProvider())
 
             .authorizeHttpRequests(auth -> auth
+
+                // Allow public access to Swagger / OpenAPI documentation
+                .requestMatchers(
+                    "/swagger-ui.html",
+                    "/swagger-ui/**",
+                    "/v3/api-docs/**"
+                ).permitAll()
+
+                // Allow public access to application login and error pages
                 .requestMatchers("/", "/error", "/login").permitAll()
+
+                // Require authentication for the welcome profile page
                 .requestMatchers("/welcomeprofile").authenticated()
-                .requestMatchers(HttpMethod.GET, "/**")
-                    .hasAnyRole("USER", "ADMIN")
+
+                // Existing API security rules
+                .requestMatchers(HttpMethod.GET, "/**").hasAnyRole("USER", "ADMIN")
                 .requestMatchers(HttpMethod.POST, "/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN")
+
+                // Require ADMIN for any remaining requests
                 .anyRequest().hasRole("ADMIN")
             )
+
             .httpBasic(Customizer.withDefaults())
             .formLogin(Customizer.withDefaults())
             .oauth2Login(Customizer.withDefaults())

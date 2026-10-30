@@ -1,0 +1,25 @@
+## API Documentation – Swagger / OpenAPI
+
+The Student Services REST API uses Swagger and OpenAPI for interactive API documentation.
+
+### Accessing Swagger UI
+
+1. Start the Spring Boot application.
+2. Open a web browser.
+3. Navigate to:
+
+   `http://localhost:8080/swagger-ui.html`
+
+Swagger UI displays the available Student API endpoints, including their HTTP methods, parameters, request bodies, and response information.
+
+### OpenAPI JSON Documentation
+
+The generated OpenAPI specification is available at:
+
+`http://localhost:8080/v3/api-docs`
+
+This endpoint provides the API documentation in JSON format.
+
+### Available API Operations
+
+The Student API supports creating, retrieving, updating, and deleting student records, retrieving student profiles, and searching students by major or enrollment year.
