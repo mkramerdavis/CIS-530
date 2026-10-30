@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Services - Welcome</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 24px;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile {
+            margin-top: 24px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .profile p {
+            margin: 16px 0;
+        }
+
+        .logout {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        button {
+            padding: 12px 28px;
+            color: white;
+            background-color: #c62828;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #a51d1d;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <h1>Welcome to Student Services</h1>
+        <p>You have successfully signed in.</p>
+
+        <section class="profile">
+            <h2>Your Profile</h2>
+
+            <p>
+                <strong>Username:</strong>
+                <span th:text="${username}">Username</span>
+            </p>
+
+            <p>
+                <strong>Email:</strong>
+                <span th:text="${email}">Email address</span>
+            </p>
+
+            <p>
+                <strong>Login Provider:</strong>
+                <span th:text="${provider}">Provider</span>
+            </p>
+        </section>
+
+        <div class="logout">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit">Log Out</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
+
