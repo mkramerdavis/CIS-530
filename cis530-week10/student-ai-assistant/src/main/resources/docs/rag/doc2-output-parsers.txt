@@ -1,0 +1,4 @@
+Output parsers are useful when an application needs data in a reliable 
+structure instead of free-form text. For example, an application may need 
+a summary, a list of action items, and a list of important terms. 
+BeanOutputConverter can help map a model response into a Java class. 

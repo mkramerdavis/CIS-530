@@ -1,0 +1,5 @@
+Spring AI provides APIs for chat models, embedding models, image models, 
+audio models, and vector stores. In a Spring Boot project, developers can 
+inject an auto-configured ChatClient.Builder and use it to create prompts. 
+Spring AI allows the developer to focus on application design instead of 
+manually writing low-level HTTP calls to model providers. 

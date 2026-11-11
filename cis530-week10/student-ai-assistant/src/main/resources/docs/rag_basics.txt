@@ -1,0 +1,33 @@
+Retrieval-Augmented Generation (RAG) Basics
+
+What is Retrieval-Augmented Generation?
+Retrieval-Augmented Generation (RAG) is an approach that combines document retrieval with AI-generated responses. Instead of relying only on information already available to the model, an application retrieves relevant information from external documents and provides it as context.
+
+What is a document?
+A document is a piece of information that an application can store and retrieve. In a Spring AI application, documents can contain text and metadata describing their source.
+
+What are embeddings?
+Embeddings are numerical representations of text that capture aspects of its meaning. They allow text to be compared based on semantic similarity rather than relying only on exact keyword matches.
+
+What is a vector store?
+A vector store stores vector representations of information and supports similarity searches. In a RAG application, it helps locate documents that are relevant to a user's question.
+
+What is document retrieval?
+Document retrieval is the process of finding information relevant to a user's question. A RAG application uses the vector store to identify documents that may help answer the question.
+
+What is QuestionAnswerAdvisor?
+QuestionAnswerAdvisor is a Spring AI component that connects a question-answering workflow to a vector store. It helps retrieve relevant information and provide it to the AI model as context.
+
+How does a RAG workflow operate?
+1. Documents are loaded into the application.
+2. Document content is added to a vector store.
+3. A student submits a question.
+4. The application retrieves relevant information from the vector store.
+5. The retrieved information is provided to the AI model.
+6. The model generates a response using the available context.
+
+Why use RAG?
+RAG helps AI applications provide responses based on information stored in external documents. It can make answers more relevant to a specific subject, course, or collection of reference materials.
+
+RAG versus prompt stuffing
+Prompt stuffing manually inserts information into a prompt. RAG retrieves relevant information from a document collection based on the user's question. RAG is useful when an application has multiple documents and needs to locate information relevant to each question.

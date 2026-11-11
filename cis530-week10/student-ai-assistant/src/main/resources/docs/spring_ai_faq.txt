@@ -1,0 +1,25 @@
+Spring AI Frequently Asked Questions
+
+What is Spring AI?
+Spring AI is a framework that helps Java developers integrate artificial intelligence models into Spring Boot applications. It provides a consistent programming interface for interacting with AI models.
+
+What is ChatClient?
+ChatClient is a Spring AI component used to send prompts to an AI model and retrieve responses. It allows an application to provide instructions, user messages, and other information to the model.
+
+What is a prompt?
+A prompt is the input sent to an AI model. It can contain instructions, questions, and additional context that guide the model's response.
+
+What is a system message?
+A system message provides instructions that help define how an AI model should behave and respond. It can establish the model's role, response style, and guidelines.
+
+What is structured output?
+Structured output allows an application to convert an AI model's response into a defined data structure, such as a Java object. Spring AI supports mapping responses to Java classes using entity mapping.
+
+What is prompt stuffing?
+Prompt stuffing, also called context stuffing, involves inserting additional information directly into a prompt before sending it to an AI model. This allows the model to use supplied information when generating its response.
+
+What is the difference between prompt stuffing and RAG?
+Prompt stuffing directly includes information in the prompt. Retrieval-Augmented Generation (RAG) retrieves relevant information from a collection of documents and supplies that information to the model as context.
+
+Why use Spring AI?
+Spring AI simplifies the integration of AI models into Spring applications. It provides components for prompts, model communication, structured output, and retrieval-based workflows.
